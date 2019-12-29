@@ -3,34 +3,42 @@ package com.divakrishnam.kasiralfadesember.entity;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
-@Entity(tableName = "Barang")
+import static androidx.room.ForeignKey.CASCADE;
+
+@Entity(tableName = "barang", foreignKeys = @ForeignKey(entity = Kategori.class,
+        parentColumns = "kategoriId",
+        childColumns = "barangKategori",
+        onDelete = CASCADE))
 public class Barang implements Serializable {
 
     @PrimaryKey
     @NonNull
     private String barangId;
-
-    @ColumnInfo(name = "BarangNama")
     private String barangNama;
-
-    @ColumnInfo(name = "BarangIdKategori")
-    private String barangIdKategori;
-
-    @ColumnInfo(name = "BarangStok")
+    @ColumnInfo(index = true)
+    private String barangKategori;
     private String barangStok;
-
-    @ColumnInfo(name = "BarangHarga")
     private String barangHarga;
 
+    public Barang(@NonNull String barangId, String barangNama, String barangKategori, String barangStok, String barangHarga) {
+        this.barangId = barangId;
+        this.barangNama = barangNama;
+        this.barangKategori = barangKategori;
+        this.barangStok = barangStok;
+        this.barangHarga = barangHarga;
+    }
+
+    @NonNull
     public String getBarangId() {
         return barangId;
     }
 
-    public void setBarangId(String barangId) {
+    public void setBarangId(@NonNull String barangId) {
         this.barangId = barangId;
     }
 
@@ -42,12 +50,12 @@ public class Barang implements Serializable {
         this.barangNama = barangNama;
     }
 
-    public String getBarangIdKategori() {
-        return barangIdKategori;
+    public String getBarangKategori() {
+        return barangKategori;
     }
 
-    public void setBarangIdKategori(String barangIdKategori) {
-        this.barangIdKategori = barangIdKategori;
+    public void setBarangKategori(String barangKategori) {
+        this.barangKategori = barangKategori;
     }
 
     public String getBarangStok() {

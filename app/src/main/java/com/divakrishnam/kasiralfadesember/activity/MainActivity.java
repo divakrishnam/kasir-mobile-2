@@ -22,10 +22,10 @@ public class MainActivity extends AppCompatActivity {
 
         pref = SharedPrefManager.getInstance(getApplicationContext());
 
-        if (!pref.isLoggedIn()) {
-            finish();
-            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-        }
+//        if (!pref.isLoggedIn()) {
+//            finish();
+//            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+//        }
 
     }
 
